@@ -1,5 +1,6 @@
 <?php
 use PHPUnit\Framework\TestCase;
+use app\Dollar;
 
 class MoneyTest extends TestCase
 {

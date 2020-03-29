@@ -1,5 +1,7 @@
 <?php
 
+namespace app;
+
 class Dollar
 {
     public $amount;
