@@ -8,6 +8,6 @@ class MoneyTest extends TestCase
     {
         $five = new Dollar(5);
         $five->times(2);
-        self::assertEquals(10, $five->amount);
+        $this->assertEquals(10, $five->amount);
     }
 }
