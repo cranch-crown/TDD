@@ -1,7 +1,8 @@
 <?php
 use PHPUnit\Framework\TestCase;
-use app\Franc;
 use app\Money;
+use app\Bank;
+use app\Sum;
 
 class MoneyTest extends TestCase
 {
@@ -18,10 +19,28 @@ class MoneyTest extends TestCase
         $this->assertFalse(Money::dollar(5)->equals(Money::dollar(6)));
         $this->assertFalse(Money::franc(5)->equals(Money::dollar(5)));
     }
-    
+
     public function testCurrency(): void
     {
         $this->assertEquals('USD', Money::dollar(1)->currency());
         $this->assertEquals('CHF', Money::franc(1)->currency());
+    }
+
+    public function testSimpleAddition(): void
+    {
+        $five = Money::dollar(5);
+        $sum = $five->plus($five);
+        $bank = new Bank();
+        $reduced = $bank->reduce($sum, 'USD');
+        $this->assertEquals(Money::dollar(10), $reduced);
+    }
+
+    public function testPlusReturnsSum()
+    {
+        $five = Money::dollar(5);
+        $result = $five->plus($five);
+        $sum = $result; // Sumクラスインスタンスが返ってきている
+        $this->assertEquals($five, $sum->augend);
+        $this->assertEquals($five, $sum->addned);
     }
 }
