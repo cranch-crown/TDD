@@ -6,5 +6,5 @@ namespace app;
 
 interface Expression
 {
-    public function reduce(string $to);
+    public function reduce(Bank $bank, string $to);
 }
